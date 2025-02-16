@@ -1,0 +1,172 @@
+\chapter{Detectors}
+
+The instrument uses two Spectral Instruments 1110S CCD detector systems each with a backside-illuminated e2v 231-84 CCD. These detectors have a format of $4\mathrm{k}\times4\mathrm{k}$ with 15~{\micron} pixels. The detectors have the “astro multi-2” AR coating and deep-depleted silicon. The red detector also has e2v's fringing-suppression treatment. They are cooled by a Brookes Polycold® PCC Compact Cooler with PT-30 refrigerant. Each detector has an integrated Vincent/Uniblitz CS90HS1T0 shutter.
+
+\section{Detector Read Modes}
+
+The controller offers read frequencies of 1.01~MHz, 502.5~kHz, and 332.2~kHz and low and high gain modes. Combinations of these are exposed by the instrument control system as “read modes”. 
+
+The only read mode supported for science observations is read mode 0, which combines the  1.01~MHz read frequency and the low amplifier gain (about 2.23 electrons per DN). This combines fast readout (7 seconds), reasonable read noise (6.5 electrons), and the deepest full-well (about 140,000 electrons) \cite{laboratory}. 
+
+
+\section{Detector Format}
+
+\begin{figure}[p]
+\begin{center}
+\begin{tikzpicture}[scale=24]
+\draw (-0.2098,-0.2056) -- (+0.2098,-0.2056) -- (+0.2098,+0.2056) -- (-0.2098,+0.2056) -- cycle;
+\draw (-0.2048,-0.2056) -- (+0.2048,-0.2056) -- (+0.2048,+0.2056) -- (-0.2048,+0.2056) -- cycle;
+\draw [dotted] (-0.2098,0) -- (+0.2098,0);
+\draw [dotted] (0,-0.2056) -- (0,+0.2056);
+\draw[->] (-0.025,-0.025) -- (-0.025,-0.175) -- (-0.175,-0.175);
+\draw[->] (+0.025,-0.025) -- (+0.025,-0.175) -- (+0.175,-0.175);
+\draw[->] (-0.025,+0.025) -- (-0.025,+0.175) -- (-0.175,+0.175);
+\draw[->] (+0.025,+0.025) -- (+0.025,+0.175) -- (+0.175,+0.175);
+\draw (-0.12,-0.12) node {0};
+\draw (+0.12,-0.12) node {1};
+\draw (-0.12,+0.12) node {2};
+\draw (+0.12,+0.12) node {3};
+\draw[->] (-0.2,-0.25) -- (+0.2,-0.25) node [anchor=west] {$x$};
+\draw[->] (-0.25,-0.2) -- (-0.25,+0.2) node [anchor=south] {$y$};
+\draw[dashed] (-0.2096,-0.2048) -- (-0.2096,+0.2048) -- (+0.2096,+0.2048) -- (+0.2096,-0.2048) -- cycle; 
+\draw[dashed] (-0.1024,-0.1024) -- (-0.1024,+0.1024) -- (+0.1024,+0.1024) -- (+0.1024,-0.1024) -- cycle; 
+\draw[dashed] (-0.0512,-0.0512) -- (-0.0512,+0.0512) -- (+0.0512,+0.0512) -- (+0.0512,-0.0512) -- cycle; 
+\end{tikzpicture}
+\caption{The format of the CCD. The full format is an active area is $4096~\mbox{columns} \times 4112~\mbox{rows}$ and with 50 columns of underscan at the start and end of each row, giving a total format of $4196~\mbox{columns} \times 4112~\mbox{rows}$. It is read in four quadrants, as shown by the dotted line and the arrows. The parallel clocks move charge vertically and the serial clocks move charge horizontally. The quadrants are numbered 0 to 3 as shown. The dashed lines show the \code{4kx4k}, \code{2kx2k}, and \code{1kx1k} windows.}
+\label{figure:format}
+\end{center}
+\end{figure}
+
+The detector has a active area of  $4096~\mbox{columns} \times 4112~\mbox{rows}$. The controller reads it using the “split full frame read-out through four amplifiers” scheme \cite[p.~17]{e2v} with 50 columns of underscan at the start and end of each row, giving a total size of $4196~\mbox{columns} \times 4112~\mbox{rows}$ divided into four quadrants. This is shown in Figure~\ref{figure:format}.
+
+Each quadrant of the detector has slightly different bias level and gain, and this gives a clear pattern in raw exposures. However, subtracting the underscan level and residual bias and dividing by a flat field largely removes these differences.
+
+We do not typically use the full native format. In the laboratory, the first and last rows showed unusual behavior (higher values in the underscan regions and lower values in the active regions) \cite{laboratory}. Also, the underscan regions of 50 columns are not commensurate with a binning of 4.  However, the full native format is available as an engineering mode with window name \verb|full|.
+
+The controller allows us to define windows provided they are centered on the detector. We define three windows that we expect will be useful for science, named \code{4kx4k}, \code{2kx2k}, and \code{1kx1k}, described below and shown in Figure~\ref{figure:format}. Each window can be used with a binning of 1, 2, or 4 pixels (both vertically and horizontally).
+
+\begin{itemize}
+\item 
+The \code{4kx4k} window has an active area of $4096~\mbox{columns} \times 4096~\mbox{rows}$, centered on the detector, with 48 columns of underscan at the start and end of each row, giving a total size of $4192~\mbox{columns} \times 4096~\mbox{rows}$.
+\item
+The \code{2kx2k} window has an active area of $2048~\mbox{columns} \times 2048~\mbox{rows}$, centered on the detector, without underscan.
+\item
+The \code{1kx1k} window has an active area of $1024~\mbox{columns} \times 1024~\mbox{rows}$, centered on the detector, without underscan.
+\end{itemize}
+
+\begin{table}[pb]
+\begin{center}
+\caption{Detector Overhead Times}
+\label{table:detector-overhead-times}
+\medskip    
+\begin{tabular}{ccc}
+\hline
+Window&Binning&Overhead\\
+&&\unit{s}\\
+\hline
+\code{4kx4k}&1&7.0\\
+\code{4kx4k}&2&3.5\\
+\code{4kx4k}&4&2.4\\
+\code{2kx2k}&1&5.1\\
+\code{2kx2k}&2&3.9\\
+\code{2kx2k}&4&3.4\\
+\code{1kx1k}&1&4.7\\
+\code{1kx1k}&2&4.1\\
+\code{1kx1k}&4&4.0\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+We anticipate the almost all science will use the standard \code{4kx4k} window with a binning of 1. The other windows and binnings are likely to be of interest only for fast (or at least faster) photometry, and their use requires making special arrangements with the science operations team.
+
+Table~\ref{table:detector-overhead-times} shows the measured overhead times (reset, read, and other overheads associated with each exposure) for each of the windows and binnings. The overhead for the standard \code{4kx4k} window with a binning of 1 is about 7 seconds. The fastest combination is the code{4kx4k} window with a binning of 4 (i.e., pixels of 1.5 arcsec), which has an overhead of 2.4 seconds.
+
+\section{Detector Bias and Dark Correction}
+
+\subsection{Bias Pedestal Removal}
+
+Table~\ref{table:detector-slices} shows the slices corresponding to each quadrant, underscan region, and data region. These are given as Python slices; to convert them into IRAF sections, reverse the order and add one to the first index. For other binnings, divide all numbers by the binning.
+
+The procedure for removing the bias pedestal level from \code{4kx4k} images and extracting the data region is:
+\begin{itemize}
+\item Determine the mean value in the underscan slice in each quadrant.
+\item Subtract these values from the whole quadrant slice.
+\item Extract either the individual data slices for each quadrant or the combined data slice for all quadrants.
+\end{itemize}
+
+This procedure is carried out automatically by COLIBRÍ pipeline.
+
+\begin{table}[pb]
+\begin{center}
+\caption{Detector Quadrant, Underscan, and Data Slices}
+\label{table:detector-slices}
+\medskip    
+\tiny
+\begin{tabular}{cccccc}
+\hline
+Window&Binning&Quadrant&Quadrant&Underscan&Data\\
+\hline
+\code{4kx4k}&1&0
+  &\wbox{0000}{   0}:2048, \wbox{0000}{   0}:\wbox{0000}{2096}
+  &\wbox{0000}{   0}:2048, \wbox{0000}{   0}:\wbox{0000}{  48}
+  &\wbox{0000}{   0}:2048, \wbox{0000}{  48}:\wbox{0000}{2096}
+  \\
+\code{4kx4k}&1&1
+  &\wbox{0000}{   0}:2048, \wbox{0000}{2096}:\wbox{0000}{4192}
+  &\wbox{0000}{   0}:2048, \wbox{0000}{4144}:\wbox{0000}{4192}
+  &\wbox{0000}{   0}:2048, \wbox{0000}{2096}:\wbox{0000}{4144}
+  \\
+\code{4kx4k}&1&2
+  &\wbox{0000}{2048}:4096, \wbox{0000}{   0}:\wbox{0000}{2096}
+  &\wbox{0000}{2048}:4096, \wbox{0000}{  48}:\wbox{0000}{2096}
+  &\wbox{0000}{2048}:4096, \wbox{0000}{  48}:\wbox{0000}{2096}
+  \\
+\code{4kx4k}&1&3
+  &\wbox{0000}{2048}:4096, \wbox{0000}{2096}:\wbox{0000}{4192}
+  &\wbox{0000}{2048}:4096, \wbox{0000}{4144}:\wbox{0000}{4192}
+  &\wbox{0000}{2048}:4096, \wbox{0000}{2096}:\wbox{0000}{4144}
+  \\
+\code{4kx4k}&1&All
+  &
+  &
+  &\wbox{0000}{   0}:4096, \wbox{0000}{  48}:\wbox{0000}{4144}
+  \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+If you wish to carry out this step yourself on raw raw \code{4kx4k} images with binning 1, the engineering team recommends this code:
+\begin{quote}\footnotesize\begin{verbatim}
+import astropy.stats
+p0 = astropy.stats.sigma_clipped_stats(data[   0:2048,   0:  48])[0]
+p1 = astropy.stats.sigma_clipped_stats(data[   0:2048,4144:4192])[0]
+p2 = astropy.stats.sigma_clipped_stats(data[2048:4096,   0:  48])[0]
+p3 = astropy.stats.sigma_clipped_stats(data[2048:4096,4144:4192])[0]
+data[   0:2048,   0:2096] -= p0
+data[   0:2048,2096:4192] -= p1
+data[2048:4096,   0:2096] -= p2
+data[2048:4098,2096:4192] -= p3
+data = data[0:4096,48:4144]
+\end{verbatim}\end{quote}
+
+Conventional bias pedestal correction is not possible for images taken with the \code{2kx2k} and \code{1kx1k} windows as they do not include underscan regions.
+
+\subsection{Residual Bias and Dark Correction}
+
+We recommend a slightly non-standard approach to residual bias and dark correction: instead of subtracting a residual bias and a scaled dark image, subtract a dark image of the same exposure time. The reason is that we suspect that the residual bias levels of images taken in rapid succession vary at the level of $\pm 0.3$ DN \cite{ohp}. Furthermore, the detectors are operated at $-110$~C and their median dark current is essentially unmeasurable.
+
+\subsection{Detector Rotation}
+
+To simplify cable handling, the telescope derotator is only capable of rotating the DDRAGO instrument through $\pm65$ degrees. This means that we cannot maintain the same field orientation on the detector at all positions. However, we step the derotator offset in multiples of 90 degrees so that North is always approximately aligned with either the columns or rows. The value of the derotator offset is given in the SMTMRO record in the image header.
+
+If you wish to correct the orientation of raw data yourself, the engineering team recommends this code:
+\begin{quote}\footnotesize\begin{verbatim}
+rotation = header["SMTMRO"]
+data = np.rot90(data, -int(rotation / 90))
+\end{verbatim}\end{quote}
+
+The center of rotation is close to but not precisely coincident with the center of the detector.
+
+
