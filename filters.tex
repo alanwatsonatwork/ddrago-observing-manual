@@ -5,20 +5,20 @@
 \caption{Filters}
 \medskip
 \label{table:filters}
-\begin{tabular}{lcccl}
+\footnotesize
+\begin{tabular}{lccccccl}
 \toprule
-Filter&Channel&\multicolumn{2}{c}{Half-Max (nm)}&\multicolumn{1}{c}{Color Term}\\
-\cmidrule{2-3}
-&Blue&Red\\
+Filter&Channel&$\lambda_\mathrm{S}$&$\lambda_\mathrm{L}$&$\Delta\lambda$&$\bar\eta$&$n_0$&\multicolumn{1}{c}{Color Term}\\
+&&nm&nm&nm&&\unit{e/s}\\
 \midrule
-$B$   & Blue & 386.6 & 486.3 &$+0.24 \times (B-V)$\\
-$g$   & Blue & 397.0 & 549.1 &$-0.05 \times (g-r)$\\
-$r$   & Blue & 553.5 & 694.7 &$+0.00 \times (g-r)$\\
-$i$   & Blue & 690.4 & 812.1 &$-0.04 \times (g-r)$\\
-$gri$ & Blue & 399.1 & 811.6 &$-0.07 \times (g-r)$\\
-$z$   & Red  & 825.9 & 915.1 \\
-$y$   & Red  & 917.8 & 972.8 \\
-$zy$  & Red  & 826.7 & 939.7 \\
+$B$   & Blue & 386.6 & 486.3 & \phantom{}101.4 & 0.32 & $5.4 \times 10^{9\phantom{0}}$ & $+0.24 \times (B-V)$\\
+$g$   & Blue & 397.0 & 549.1 & \phantom{}152.2 & 0.40 & $9.4 \times 10^{9\phantom{0}}$ & $-0.05 \times (g-r)$\\
+$r$   & Blue & 553.5 & 694.7 & \phantom{}141.3 & 0.40 & $6.5 \times 10^{9\phantom{0}}$& $+0.00 \times (g-r)$\\
+$i$   & Blue & 690.4 & 812.1 & \phantom{}121.7 & 0.39 & $4.7 \times 10^{9\phantom{0}}$& $-0.04 \times (g-r)$\\
+$gri$ & Blue & 399.1 & 811.6 & \phantom{}412.8 & 0.39 & $2.0 \times 10^{10\phantom{}}$& $-0.07 \times (g-r)$\\
+$z$   & Red  & 825.9 & 915.1 & \phantom{0}89.6 & 0.33 & $2.5 \times 10^{9\phantom{0}}$& \\
+$y$   & Red  & 917.8 & 972.8 & \phantom{0}57.4 & 0.26 & $1.1 \times 10^{9\phantom{0}}$\\
+$zy$  & Red  & 826.7 & 939.7 & \phantom{}125.2 & 0.35 & $3.6 \times 10^{9\phantom{0}}$\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -32,7 +32,7 @@ The blue channel has $g$, $r$, and $i$ filters that are very similar to the corr
 
 The red channel has $z$ and $y$ filters that are very similar to the corresponding Pan-STARRS fitlers and a wide $zy$ filter that passes from the blue edge of $z$ and thus is similar to SDSS $z$.
 
-The $g$, $r$, $i$, $z$, $y$, $gri$, and $zy$ filters are interference filters on fused silica substrates. The $B$ filter is a conventional assembly of cemented colored glasses.
+The $g$, $r$, $i$, $z$, $y$, $gri$, and $zy$ filters are interference filters on fused silica substrates. The $B$ filter is a conventional cemented assembly of colored glasses.
 
 The DDRAGO $i$ and $z$ filters were deliberately designed to be slightly different from their Pan-STARRS equivalents \citep{Tonry-2012}. The Pan-STARRS $i$ and $z$ filters overlap slightly and cross at about 818~nm. The DDRAGO $i$ and $z$ filters are separated, with the $i$ filter having its half-maximum at 812~nm and the $r$ filter at 825~nm. This is so that the bandpasses is largely defined by the filters and not by the D2 transition from reflectance to transmittance, which depends on polarization. This is especially important in DDRAGO, since there are reflections from inclined surfaces at M3, D1, and D2, and these rotate as the telescope tracks a field. The same considerations apply to the $gri$ and $zy$ filters. These separations can most clearly be see in Figures~\ref{figure:system-filters-grizy} and \ref{figure:system-filters-others}.
 
@@ -40,9 +40,9 @@ The DDRAGO $i$ and $z$ filters were deliberately designed to be slightly differe
 \section{Transformations}
 
 Table~\ref{table:filters} shows typical color terms for the transformations from natural magnitudes to the corresponding magnitudes in the Pan-STARRs and Landolt systems. We transform $gri$ to Pan-STARRS $r$, not to Pan-STARRS $w$. The color terms are in the sense
-$$
+\begin{align}
 \mbox{Standard magnitude} = \mbox{DDRAGO magnitude} + \mbox{color term}.
-$$
+\end{align}
 For most filters, the color terms are small. The exception is $B$, for which the color term is $+0.24(B-V)$.
 
 \section{System Efficiency}
@@ -127,5 +127,20 @@ Figure~\ref{figure:system-efficiency} shows the major components of the total sy
 
 Figures~\ref{figure:system-filters-grizy} and \ref{figure:system-filters-others} show the transmission of the filters alone and the system efficiency including the filters. They show how the dichroic transition in D2 modifies slightly the red edges of the $i$ and $gri$ filters and the blue edges of the $z$ and $zy$ filters and how the detector fall-off modifiers significantly the response in the $z$, $y$, and $zy$ filters.
 
-Figures~\ref{figure:system-filters-first} and \ref{figure:system-filters-last} show in detail the the system efficiency including the filter for each filter. Table~\ref{table:filters} gives the half-maximum wavelengths for the system efficiency for each filter.
+Figures~\ref{figure:system-filters-first} and \ref{figure:system-filters-last} show in detail the the total system efficiency $\eta$ for each filter. Table~\ref{table:filters} gives the full-width-at-half-maximum $\Delta\lambda$ and the short and long half-maximum wavelengths $\lambda_\mathrm{S}$ and $\lambda_\mathrm{L}$ for the total system efficiency. It also gives the mean efficiency $\bar\eta$, defined by
+\begin{align}
+\bar\eta \Delta\lambda \equiv \int \eta\,d\lambda.
+\end{align}
+The mean efficiency would be the efficiency of a rectangular filter with width $\Delta\lambda$ and with the same integrated efficiency $\int \eta\,d\lambda$ as the real filter.
 
+\section{Zero-Points}
+
+Table~\ref{table:filters} also gives the estimated zero points $n_0$ for each filter, defined by 
+\begin{align}
+n_0 = \frac{A F_0}{h}\int \frac{\eta}{\lambda}\,d\lambda,
+\end{align}
+in which $A$ is the area of the telescope (discounting the central obstruction), $h$ in Planck's constant, and $F_0 = 3631~\unit{Jy}$ is the flux density of a source with $\AB = 0$. In practical terms, the zero point $n_0$ is the expected signal in $\unit{e/s}$ from a source with zero AB magnitude at all wavelengths.
+
+Observers are cautioned that these zero points are optimistic, in that they assume fresh aluminum coatings. The M1 and M2 mirrors were coated in June and September 2024, and the reflectivity is expected to decrease by about 10\% per year. Furthermore, clouds can also reduce the observed signal.
+
+NOTE: We are still working to confirm the measured zero points, but as the moment there is no reason to believe that the theoretical estimates are significantly incorrect.
