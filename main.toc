@@ -1,0 +1,16 @@
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}This Manual}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Overview of the Instrument}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Current State of the Instrument}{3}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Observing}{5}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Filters and System Efficiency}{6}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Filters}{6}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Transformations}{7}{section.3.2}%
+\contentsline {section}{\numberline {3.3}System Efficiency}{7}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Detectors}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Detector Read Modes}{16}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Detector Format}{16}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Detector Bias and Dark Correction}{18}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Bias Pedestal Removal}{18}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Residual Bias and Dark Correction}{19}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Detector Rotation}{19}{subsection.4.3.3}%
