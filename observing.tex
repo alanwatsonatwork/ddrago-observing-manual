@@ -1,5 +1,28 @@
 \chapter{Observing}
 
+\section{Estimated Exposure Times}
+
+A simple exposure-time estimator is available here:
+
+\begin{quote}
+\url{https://bit.ly/3HPLyGz}
+\end{quote}
+
+The estimator is a spreadsheet in Google Sheets. To use it:
+\begin{enumerate}
+\item 
+Make your own copy by selecting File $\rightarrow$ Make~a~Copy in the menus.
+\item
+In your copy, change the values of the SNR, AB magnitude, and image FWHM to correspond to your science case and expected conditions.
+\item 
+Note the estimated exposure times in dark and bright conditions.
+\end{enumerate}
+
+\section{Pointing Limits}
+
+The telescope is located at 115.4646~{\deg} east and 31.0449~{\deg} north, and at an 
+altitude of 2792 meters. The telescope has an altitude-azimuth mount and can point anywhere above a zenith distance limit of 73.4~{\deg}, which corresponds to an airmass of 3.5. However, the telescope cannot track well within 1~{\deg} of the zenith.
+
 \section{Early Science Observations}
 
 DDRAGO is currently being offered for early science observations on best-effort and shared-risk basis, on the understanding that commissioning tasks and the transient science program may take priority, and with the warning that the instrument is not fully characterized. 
@@ -8,18 +31,21 @@ The transients team currently observes by taking 60 seconds exposures and dither
 
 We aim to keep individual observing blocks to about 30 minutes of real time (i.e., 24 x 60 second exposures plus overheads). If more data is required, we recommend repeating blocks.
 
-\section{Pointing Limits}
+For each observing block, the science operations team will require the following information:
 
-The telescope is located at 115.4646~{\deg} east and 31.0449~{\deg} north, and at an 
-altitude of 2792 meters. The telescope has an altitude-azimuth mount and can point anywhere above a zenith distance limit of 73.4~{\deg}, which corresponds to an airmass of 3.5. However, the telescope cannot track well within 1~{\deg} of the zenith.
-
-\section{Estimated Exposure Times}
-
-As a rule of thumb, a typical measured 10-sigma limiting magnitudes for point sources in 60 seconds in the $g$, $r$, and $i$ filters in grey time is $\AB \approx 20$, so in $n$ exposures a typical $m$-sigma limiting magnitude is 
-\begin{align}
-\AB ≈ 20 + 1.25 \log_{10}(n) − 2.5 \log_{10}(m / 10)
-\end{align}
-These values obviously vary with seeing and sky brightness. We recommend taking initial test observations before submitting larger requests.
+\begin{itemize}
+\item Target name. This is strictly optional, but we find it useful.
+\item Program number. This will be assigned to each approved program by the science operations team.
+\item Target number. We recommend using a distinct target number for each target.
+%\item Visit number (default 0). Data files are organized into directories based on the date or observation, program number, block number, and visit number, so the visit number can be used to separate data taken on the same target at different times on the same night.
+\item Pointing J2000 coordinates.
+\item Filters.
+\item Number of exposures in each filter.
+\item Exposure time per exposure (default is 60 seconds).
+\item If you want to use random dithers, the dither circle diameter (default is 1 arcmin). If you wan to use fixed dithers, a description of your preferred dither pattern.
+\item Constraints on airmass (by default below airmass 2) or hour angle.
+\item Whether the block should be run once, multiple times, or repeatedly (i.e., every second night).
+\end{itemize}
 
 \section{Acknowledgements in Publications}
 
