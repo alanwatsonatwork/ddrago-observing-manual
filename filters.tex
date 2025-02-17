@@ -1,0 +1,126 @@
+\chapter{Filters and System Efficiency}
+
+\section{Filters}
+
+The blue channel has filters that are very similar to Pan-STARRS $g$, $r$, and $i$, a wide filter $gri$ that passes from the blue edge of $g$ to the red edge of $i$ and is very similar to the Pan-STARRS $w$ filter, and a $B$ filter.
+
+The red channel has filters that are very similar to Pan-STARRS $z$ and $y$ and a wide filter $zy$ that passes from the blue edge of $z$ and thus is similar to SDSS $z$.
+
+The DDRAGO $i$ and $z$ filters were deliberately specified to differ slightly from their Pan-STARRS equivalents \citep{Tonry-2012}. The Pan-STARRS $i$ and $z$ filters overlap slightly and cross at about 818~nm. The DDRAGO $i$ and $z$ filters are separated, with the $i$ filter having its half-maximum at 812~nm and the $r$ filter at 825~nm. This is so that the bandpasses is largely defined by the filters and not by the D2 transition from reflectance to transmittance, which depends on polarization. This is especially important in DDRAGO, since there are reflections of inclined surfaces at M3, D1, and D2, and these rotate as the telescope tracks a field. The same considerations apply to the $gri$ and $zy$ filters. These separations can most clearly be see in Figures~\ref{figure:system-filters-grizy} and \ref{figure:system-filters-others}.
+
+
+\section{Transformations}
+
+Table~\ref{table:filters} shows typical color terms for the transformations from natural magnitudes to the corresponding magnitudes in the Pan-STARRs and Landolt systems. We transform $gri$ to Pan-STARRS $r$, not to Pan-STARRS $w$. The color terms are in the sense
+$$
+\mbox{Standard magnitude} = \mbox{DDRAGO magnitude} + \mbox{color term}.
+$$
+For most filters, the color terms are small. The exception is $B$.
+
+\section{System Efficiency}
+
+We have modelled the system efficiency of the instrument at 1.5 airmasses taking into account:
+\begin{itemize}
+\item The continuum absorption 300 nm to 2000 nm calculated using the “k-model” from Schuster \& Parrao (2001), without ozone, and extrapolated from the last data point using their assumed RC index of $-4.05$ and derived aerosol index of $-0.87$. 
+
+\item
+The atmospheric line-absorption spectrum above 850~nm generated using ATRAN (Lord 1992), made available on the SOFIA web site by Dr.\ William Vacca. The altitude was specified as 2790 meters and, following advice on the web page, the latitude was left at the default of 39 degrees.We assume an airmass of 1.5 and a water vapor burden of 2.8~mm (the median value given by Otárola, Hiriart, \& Pérez-Leon 2009). The lower wavelength limit of 0.85 µm is a limitation of ATRAN. It means that the absorption-line spectrum does not contain absorption from either the strong A-band (760 to 763~nm) and B-band (686 to 689~nm) or from other weaker lines.
+
+\item
+Three reflections from aluminium. We use the measurement reported by \cite{Boccas-2006} for a \emph{fresh} aluminum coating at Gemini.  As the mirrors age, the reflectivity will decrease.
+
+\item
+Models of the transmissions of L1, L2, L3, and L4, including anti-reflection coatings and internal absorption.
+
+\item
+Vendor-supplied transmission and reflectance measurements for D1, D2, and the filters.
+
+\item
+Vendor-supplied transmission date for the CCD windows and quantum efficiency data for the CCDs.
+
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.80\linewidth]{figure/components.pdf}
+\includegraphics[width=0.80\linewidth]{figure/system.pdf}
+\caption{Top: The major components of the system efficiency at 1.5 airmasses: the atmosphere, telescope, and the efficiencies of the blue and red channels of the instrument without filters. Bottom: The system efficiencies of the blue and red channels without filters.}
+\label{figure:system-efficiency}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.80\linewidth]{figure/filters-0.pdf}
+\includegraphics[width=0.80\linewidth]{figure/system-filters-0.pdf}
+\caption{Top: the transmission of the $g$, $r$, $i$, $z$, and $y$ filters and the sytem efficiencies of the blue and red channels without filters. Bottom: the system efficiencies including the $g$, $r$, $i$, $z$, and $y$ filters. Note that the D2 dichroic encroaches on the red edge of the $i$ filter and the blue edge of the $z$ filter.}
+\label{figure:system-filters-grizy}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.80\linewidth]{figure/filters-1.pdf}
+\includegraphics[width=0.80\linewidth]{figure/system-filters-1.pdf}
+\caption{Top: the transmission of the $B$, $gri$, and $zy$ filters and the sytem efficiencies of the blue and red channels without filters. Bottom: the system efficiencies including the $B$, $gri$, and $zy$ filters. Note that the D2 dichroic encroaches on the red edge of the $gri$ filter and the blue edge of the $zy$ filter.}
+\label{figure:system-filters-others}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.80\linewidth]{figure/system-B.pdf}
+\includegraphics[width=0.80\linewidth]{figure/system-g.pdf}
+\caption{The system efficiencies in the $B$ and $g$ filters.}
+\label{figure:system-filters-first}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.80\linewidth]{figure/system-r.pdf}
+\includegraphics[width=0.80\linewidth]{figure/system-i.pdf}
+\caption{The system efficiencies in the $r$ and $i$ filters.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.80\linewidth]{figure/system-z.pdf}
+\includegraphics[width=0.80\linewidth]{figure/system-y.pdf}
+\caption{The system efficiencies in the $z$ and $y$ filters.}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.80\linewidth]{figure/system-gri.pdf}
+\includegraphics[width=0.80\linewidth]{figure/system-zy.pdf}
+\caption{The system efficiencies in the $gri$ and $zy$ filters.}
+\label{figure:system-filters-last}
+\end{figure}
+
+\begin{table}
+\centering
+\caption{Filters}
+\medskip
+\label{table:filters}
+\begin{tabular}{lccl}
+\toprule
+Filter&\multicolumn{2}{c}{Half-Max (nm)}&\multicolumn{1}{c}{Color Term}\\
+\cmidrule{2-3}
+&Blue&Red\\
+\midrule
+$B$   & 386.6 & 486.3 &$+0.24 \times (B-V)$\\
+$g$   & 397.0 & 549.1 &$-0.05 \times (g-r)$\\
+$r$   & 553.5 & 694.7 &$+0.00 \times (g-r)$\\
+$i$   & 690.4 & 812.1 &$-0.04 \times (g-r)$\\
+$gri$ & 399.1 & 811.6 &$-0.07 \times (g-r)$\\
+$z$   & 825.9 & 915.1 \\
+$y$   & 917.8 & 972.8 \\
+$zy$  & 826.7 & 939.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Figure~\ref{figure:system-efficiency} shows the major components of the total system efficiency without filters --- the atmosphere, the telescope, and the efficiencies of the blue and red channels including both optics and the detector --- and the total system efficiencies in the blue and red channels.
+
+Figures~\ref{figure:system-filters-grizy} and \ref{figure:system-filters-others} show the transmission of the filters alone and the system efficiency including the filters. They show how the dichroic transition in D2 modifies slightly the red edges of the $i$ and $gri$ filters and the blue edges of the $z$ and $zy$ filters and how the detector fall-off modifiers significantly the response in the $z$, $y$, and $zy$ filters.
+
+Figures~\ref{figure:system-filters-first} and \ref{figure:system-filters-last} show in detail the the system efficiency including the filter for each filter. Table~\ref{table:filters} gives the half-maximum wavelengths for the system efficiency for each filter.
+
