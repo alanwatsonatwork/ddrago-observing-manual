@@ -2,14 +2,14 @@
 
 The instrument uses two Spectral Instruments 1110S CCD detector systems each with a backside-illuminated e2v 231-84 CCD. These detectors have a format of $4\mathrm{k}\times4\mathrm{k}$ with 15~{\micron} pixels. The detectors have the “astro multi-2” AR coating and deep-depleted silicon. The red detector also has e2v's fringing-suppression treatment. They are cooled by a Brookes Polycold® PCC Compact Cooler with PT-30 refrigerant. Each detector has an integrated Vincent/Uniblitz CS90HS1T0 shutter.
 
-\section{Detector Read Modes}
+\section{Read Modes}
 
 The controller offers read frequencies of 1.01~MHz, 502.5~kHz, and 332.2~kHz and low and high gain modes. Combinations of these are exposed by the instrument control system as “read modes”. 
 
 The only read mode supported for science observations is read mode 0, which combines the  1.01~MHz read frequency and the low amplifier gain (about 2.23 electrons per DN). This combines fast readout (7 seconds), reasonable read noise (6.5 electrons), and the deepest full-well (about 140,000 electrons) \cite{laboratory}. 
 
 
-\section{Detector Format}
+\section{Format}
 
 \begin{figure}[p]
 \begin{center}
@@ -82,7 +82,7 @@ We anticipate the almost all science will use the standard \code{4kx4k} window w
 
 Table~\ref{table:detector-overhead-times} shows the measured overhead times (reset, read, and other overheads associated with each exposure) for each of the windows and binnings. The overhead for the standard \code{4kx4k} window with a binning of 1 is about 7 seconds. The fastest combination is the code{4kx4k} window with a binning of 4 (i.e., pixels of 1.5 arcsec), which has an overhead of 2.4 seconds.
 
-\section{Detector Bias and Dark Correction}
+\section{Bias and Dark Correction}
 
 \subsection{Bias Pedestal Removal}
 
@@ -157,7 +157,7 @@ Conventional bias pedestal correction is not possible for images taken with the 
 
 We recommend a slightly non-standard approach to residual bias and dark correction: instead of subtracting a residual bias and a scaled dark image, subtract a dark image of the same exposure time. The reason is that we suspect that the residual bias levels of images taken in rapid succession vary at the level of $\pm 0.3$ DN \cite{ohp}. Furthermore, the detectors are operated at $-110$~C and their median dark current is essentially unmeasurable.
 
-\subsection{Detector Rotation}
+\section{Orientation on Sky}
 
 To simplify cable handling, the telescope derotator is only capable of rotating the DDRAGO instrument through $\pm65$ degrees. This means that we cannot maintain the same field orientation on the detector at all positions. However, we step the derotator offset in multiples of 90 degrees so that North is always approximately aligned with either the columns or rows. The value of the derotator offset is given in the SMTMRO record in the image header.
 
