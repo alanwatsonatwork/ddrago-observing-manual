@@ -1,12 +1,40 @@
 \chapter{Filters and System Efficiency}
 
+\begin{table}
+\centering
+\caption{Filters}
+\medskip
+\label{table:filters}
+\begin{tabular}{lcccl}
+\toprule
+Filter&Channel&\multicolumn{2}{c}{Half-Max (nm)}&\multicolumn{1}{c}{Color Term}\\
+\cmidrule{2-3}
+&Blue&Red\\
+\midrule
+$B$   & Blue & 386.6 & 486.3 &$+0.24 \times (B-V)$\\
+$g$   & Blue & 397.0 & 549.1 &$-0.05 \times (g-r)$\\
+$r$   & Blue & 553.5 & 694.7 &$+0.00 \times (g-r)$\\
+$i$   & Blue & 690.4 & 812.1 &$-0.04 \times (g-r)$\\
+$gri$ & Blue & 399.1 & 811.6 &$-0.07 \times (g-r)$\\
+$z$   & Red  & 825.9 & 915.1 \\
+$y$   & Red  & 917.8 & 972.8 \\
+$zy$  & Red  & 826.7 & 939.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
 \section{Filters}
 
-The blue channel has filters that are very similar to Pan-STARRS $g$, $r$, and $i$, a wide filter $gri$ that passes from the blue edge of $g$ to the red edge of $i$ and is very similar to the Pan-STARRS $w$ filter, and a $B$ filter. (It can be somewhat confusing that the blue channel has red $r$ and infrared $i$ filters, but it's too late to change this established usage.)
+The DDRAGO filters are summarized in Table~\ref{table:filters}.
 
-The red channel has filters that are very similar to Pan-STARRS $z$ and $y$ and a wide filter $zy$ that passes from the blue edge of $z$ and thus is similar to SDSS $z$.
+The blue channel has $g$, $r$, and $i$ filters that are very similar to the corresponding Pan-STARRS filters, a wide $gri$ filter that passes from the blue edge of $g$ to the red edge of $i$ and is very similar to the Pan-STARRS $w$ filter, and a $B$ filter. (It can be somewhat confusing that the blue channel has red $r$ and infrared $i$ filters, but it's too late to change this established usage.)
 
-The DDRAGO $i$ and $z$ filters were deliberately specified to be slightly different from their Pan-STARRS equivalents \citep{Tonry-2012}. The Pan-STARRS $i$ and $z$ filters overlap slightly and cross at about 818~nm. The DDRAGO $i$ and $z$ filters are separated, with the $i$ filter having its half-maximum at 812~nm and the $r$ filter at 825~nm. This is so that the bandpasses is largely defined by the filters and not by the D2 transition from reflectance to transmittance, which depends on polarization. This is especially important in DDRAGO, since there are reflections from inclined surfaces at M3, D1, and D2, and these rotate as the telescope tracks a field. The same considerations apply to the $gri$ and $zy$ filters. These separations can most clearly be see in Figures~\ref{figure:system-filters-grizy} and \ref{figure:system-filters-others}.
+The red channel has $z$ and $y$ filters that are very similar to the corresponding Pan-STARRS fitlers and a wide $zy$ filter that passes from the blue edge of $z$ and thus is similar to SDSS $z$.
+
+The $g$, $r$, $i$, $z$, $y$, $gri$, and $zy$ filters are interference filters on fused silica substrates. The $B$ filter is a conventional assembly of cemented colored glasses.
+
+The DDRAGO $i$ and $z$ filters were deliberately designed to be slightly different from their Pan-STARRS equivalents \citep{Tonry-2012}. The Pan-STARRS $i$ and $z$ filters overlap slightly and cross at about 818~nm. The DDRAGO $i$ and $z$ filters are separated, with the $i$ filter having its half-maximum at 812~nm and the $r$ filter at 825~nm. This is so that the bandpasses is largely defined by the filters and not by the D2 transition from reflectance to transmittance, which depends on polarization. This is especially important in DDRAGO, since there are reflections from inclined surfaces at M3, D1, and D2, and these rotate as the telescope tracks a field. The same considerations apply to the $gri$ and $zy$ filters. These separations can most clearly be see in Figures~\ref{figure:system-filters-grizy} and \ref{figure:system-filters-others}.
 
 
 \section{Transformations}
@@ -94,29 +122,6 @@ Vendor-supplied transmission date for the CCD windows and quantum efficiency dat
 \caption{The system efficiencies in the $gri$ and $zy$ filters.}
 \label{figure:system-filters-last}
 \end{figure}
-
-\begin{table}
-\centering
-\caption{Filters}
-\medskip
-\label{table:filters}
-\begin{tabular}{lccl}
-\toprule
-Filter&\multicolumn{2}{c}{Half-Max (nm)}&\multicolumn{1}{c}{Color Term}\\
-\cmidrule{2-3}
-&Blue&Red\\
-\midrule
-$B$   & 386.6 & 486.3 &$+0.24 \times (B-V)$\\
-$g$   & 397.0 & 549.1 &$-0.05 \times (g-r)$\\
-$r$   & 553.5 & 694.7 &$+0.00 \times (g-r)$\\
-$i$   & 690.4 & 812.1 &$-0.04 \times (g-r)$\\
-$gri$ & 399.1 & 811.6 &$-0.07 \times (g-r)$\\
-$z$   & 825.9 & 915.1 \\
-$y$   & 917.8 & 972.8 \\
-$zy$  & 826.7 & 939.7 \\
-\bottomrule
-\end{tabular}
-\end{table}
 
 Figure~\ref{figure:system-efficiency} shows the major components of the total system efficiency without filters --- the atmosphere, the telescope, and the efficiencies of the blue and red channels including both optics and the detector --- and the total system efficiencies in the blue and red channels.
 
