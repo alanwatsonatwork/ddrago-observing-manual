@@ -6,7 +6,7 @@ The instrument uses two Spectral Instruments 1110S CCD detector systems each wit
 
 The controller offers read frequencies of 1.01~MHz, 502.5~kHz, and 332.2~kHz and low and high gain modes. Combinations of these are exposed by the instrument control system as “read modes”. 
 
-The only read mode supported for science observations is read mode 0, which combines the  1.01~MHz read frequency and the low amplifier gain (about 2.23 electrons per DN). This combines fast readout (7 seconds), reasonable read noise (6.5 electrons), and the deepest full-well (about 140,000 electrons) \cite{laboratory}. 
+The only read mode supported for science observations is read mode 0, which combines the  1.01~MHz read frequency and the low amplifier gain (about 2.23 electrons per DN). This combines fast readout (7 seconds), reasonable read noise (6.5 electrons), and the deepest full-well (about 140,000 electrons) \citep{laboratory}. 
 
 \section{Format}
 
@@ -36,11 +36,11 @@ The only read mode supported for science observations is read mode 0, which comb
 \end{center}
 \end{figure}
 
-The detector has a active area of  $4096~\mbox{columns} \times 4112~\mbox{rows}$. The controller reads it using the “split full frame read-out through four amplifiers” scheme \cite[p.~17]{e2v} with 50 columns of underscan at the start and end of each row, giving a total size of $4196~\mbox{columns} \times 4112~\mbox{rows}$ divided into four quadrants. This is shown in Figure~\ref{figure:format}.
+The detector has a active area of  $4096~\mbox{columns} \times 4112~\mbox{rows}$. The controller reads it using the “split full frame read-out through four amplifiers” scheme \citep[p.~17]{e2v} with 50 columns of underscan at the start and end of each row, giving a total size of $4196~\mbox{columns} \times 4112~\mbox{rows}$ divided into four quadrants. This is shown in Figure~\ref{figure:format}.
 
 Each quadrant of the detector has slightly different bias level and gain, and this gives a clear pattern in raw exposures. However, subtracting the underscan level and residual bias and dividing by a flat field largely removes these differences.
 
-We do not typically use the full native format. In the laboratory, the first and last rows showed unusual behavior (higher values in the underscan regions and lower values in the active regions) \cite{laboratory}. Also, the underscan regions of 50 columns are not commensurate with a binning of 4.  However, the full native format is available as an engineering mode with window name \verb|full|.
+We do not typically use the full native format. In the laboratory, the first and last rows showed unusual behavior, with higher values in the underscan regions and lower values in the active regions \citep{laboratory}. Also, the underscan regions of 50 columns are not commensurate with a binning of 4.  However, the full native format is available as an engineering mode with window name \verb|full|.
 
 The controller allows us to define windows provided they are centered on the detector. We define three windows that we expect will be useful for science, named \code{4kx4k}, \code{2kx2k}, and \code{1kx1k}, described below and shown in Figure~\ref{figure:format}. Each window can be used with a binning of 1, 2, or 4 pixels (both vertically and horizontally).
 
@@ -154,7 +154,7 @@ Conventional bias pedestal correction is not possible for images taken with the 
 
 \subsection{Residual Bias and Dark Correction}
 
-We recommend a slightly non-standard approach to residual bias and dark correction: instead of subtracting a residual bias and a scaled dark image, subtract a dark image of the same exposure time. The reason is that we suspect that the residual bias levels of images taken in rapid succession vary at the level of $\pm 0.3$ DN \cite{ohp}. Furthermore, the detectors are operated at $-110$~C and their median dark current is essentially unmeasurable.
+We recommend a slightly non-standard approach to residual bias and dark correction: instead of subtracting a residual bias and a scaled dark image, subtract a dark image of the same exposure time. The reason is that we suspect that the residual bias levels of images taken in rapid succession vary at the level of $\pm 0.3$ DN \citep{ohp}. Furthermore, the detectors are operated at $-110$~C and their median dark current is essentially unmeasurable.
 
 \section{Orientation on Sky}
 
